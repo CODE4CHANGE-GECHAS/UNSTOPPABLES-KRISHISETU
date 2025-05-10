@@ -1,0 +1,145 @@
+/* Farmer Sidebar Container */
+.farmer-sidebar-container {
+  width: 70px;
+  height: 100vh;
+  background-color: #000000;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  transition: width 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #333;
+}
+
+.farmer-sidebar-container.farmer-sidebar-open {
+  width: 220px;
+}
+
+/* Header with Hamburger */
+.farmer-sidebar-header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #333;
+}
+
+.farmer-sidebar-hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.farmer-hamburger-icon {
+  color: #ffffff;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+/* Menu Items */
+.farmer-sidebar-menu {
+  flex: 1;
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+.farmer-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  margin: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  color: #ffffff;
+  gap: 16px;
+}
+
+.farmer-menu-item:hover {
+  background-color: #1a1a1a;
+}
+
+.farmer-menu-item.farmer-menu-active {
+  background-color: #333333;
+}
+
+.farmer-menu-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.farmer-menu-icon {
+  color: #ffffff;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+.farmer-menu-label {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.2s ease 0.1s;
+}
+
+.farmer-sidebar-container.farmer-sidebar-open .farmer-menu-label {
+  opacity: 1;
+}
+
+/* Tooltip for collapsed state */
+.farmer-menu-item:not(:hover)::after {
+  content: attr(data-farmer-tooltip);
+  position: absolute;
+  left: 70px;
+  background-color: #000;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1100;
+  pointer-events: none;
+  border: 1px solid #333;
+}
+
+.farmer-sidebar-container:not(.farmer-sidebar-open) .farmer-menu-item:hover::after {
+  opacity: 1;
+  visibility: visible;
+  left: 80px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .farmer-sidebar-container {
+    width: 60px;
+  }
+  
+  .farmer-sidebar-container.farmer-sidebar-open {
+    width: 200px;
+  }
+  
+  .farmer-menu-item {
+    padding: 12px 15px;
+    gap: 12px;
+  }
+  
+  .farmer-menu-icon {
+    font-size: 1rem;
+  }
+  
+  .farmer-menu-label {
+    font-size: 13px;
+  }
+}
